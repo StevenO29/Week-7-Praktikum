@@ -80,9 +80,8 @@
             this.lblOutput.AutoSize = true;
             this.lblOutput.Location = new System.Drawing.Point(201, 241);
             this.lblOutput.Name = "lblOutput";
-            this.lblOutput.Size = new System.Drawing.Size(20, 25);
+            this.lblOutput.Size = new System.Drawing.Size(0, 25);
             this.lblOutput.TabIndex = 4;
-            this.lblOutput.Text = "..";
             // 
             // txtBoxInputKalimat
             // 

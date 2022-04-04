@@ -19,34 +19,27 @@ namespace Week_7_Praktikum
 
         private void btnKonversi_Click(object sender, EventArgs e)
         {
-            string simpanKalimat = "";
-            string hurufPertama = "";
-            string hurufKedua = "";
-            int indexArray = 0;
-            int indexArray2 = 0;
-            int count = 0;
-            char[] alphabetArray = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".ToCharArray();
-            simpanKalimat = txtBoxInputKalimat.Text.ToUpper();
-            hurufPertama = txtBoxHurufAwal.Text.ToUpper();
-            hurufKedua = txtBoxHurufDiganti.Text.ToUpper();
-            simpanKalimat.ToCharArray();
-            hurufPertama.ToCharArray();
-            hurufKedua.ToCharArray();
-            for (int i = 0; i < alphabetArray.Length; i++)
+            string inputKalimat = txtBoxInputKalimat.Text.ToUpper();
+            string hurufPertama = txtBoxHurufAwal.Text.ToUpper();
+            string hurufKedua = txtBoxHurufDiganti.Text.ToUpper();
+            int indexHurufPertama = hurufPertama.ToCharArray()[0];
+            int indexHurufKedua = hurufKedua.ToCharArray()[0];
+            int selisih = indexHurufKedua - indexHurufPertama;
+            for (int i = 0; i < inputKalimat.Length; i++)
             {
-                if (hurufPertama == alphabetArray[i].ToString())
-                    indexArray = i;
+                int convertToAscii = inputKalimat[i];
+                if (inputKalimat[i] != ' ')
+                {
+                    if (convertToAscii + selisih < 65 && inputKalimat[i] != ' ')
+                        inputKalimat = inputKalimat.Substring(0, i) + (char)(convertToAscii + selisih + 26) + inputKalimat.Substring(i + 1);
+                    else if (convertToAscii + selisih > 90 && inputKalimat[i] != ' ')
+                        inputKalimat = inputKalimat.Substring(0, i) + (char)(convertToAscii + selisih - 26) + inputKalimat.Substring(i + 1);
+                    else
+                        inputKalimat = inputKalimat.Substring(0, i) + (char)(convertToAscii + selisih) + inputKalimat.Substring(i + 1);
+                }
+                else inputKalimat = inputKalimat.Substring(0, i) + ' ' + inputKalimat.Substring(i + 1);
             }
-            for (int j = 0; j < alphabetArray.Length; j++)
-            {
-                if (hurufKedua == alphabetArray[j].ToString())
-                    indexArray2 = j;
-            }
-            if (indexArray < indexArray2)
-                count = indexArray - indexArray2;
-            else
-                count = indexArray + indexArray2;
-            
+            lblOutput.Text = inputKalimat.ToUpper();
         }
     }
 }
